@@ -45,14 +45,30 @@ class JobController extends Controller
         return view('jobs.myjobs',compact('jobs'));
     }
 
-
     public function jobedit($id){
        $JobDetails = Job::findOrFail($id);
        return view('jobs.jobedit',compact('JobDetails'));
     }
 
-
-
+    public function jobupdate($id){
+        $job = Job::findOrFail($id);
+        $job->title = request('title');
+        $job->roles = request('roles');
+        $job->last_date = request('last_date');
+        $job->status = request('status');
+        $job->address = request('address');
+        $job->category_id = request('jobcategory');
+        $job->position = request('position');
+        $job->save();
+        return redirect()->to('jobs/myjob')->with('message','Job Update Successfully');
+    }
+    
+    public function jobDelete($id){
+       $job = Job::findOrFail($id);
+       $job->delete();
+       //return redirect()->to('jobs/myjob');*/
+       //echo "hello world";
+    }
 
 
 

@@ -13,7 +13,7 @@
                                 {{Session::get('message')}}
                             </div>
                         @endif
-                        <form action="{{route('jobs.store')}}" method="post">
+                        <form action="{{url('jobupdate',[$JobDetails->id])}}" method="post">
                             @csrf
                         <div class="form-group">
                             <label>Title</label>
@@ -39,9 +39,9 @@
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select name="category" class="form-control">
+                            <select name="jobcategory" class="form-control">
                                 @php
-                                $selected = 'selected'
+                                $selected = 'selected';
                                 @endphp 
                                 @foreach(App\Category::all() as $cat)
                                     <option value="{{$cat->id}}" @if($JobDetails->category_id==$cat->id){{$selected}}@endif>{{$cat->name}}</option>
@@ -70,6 +70,9 @@
                             @endif
                         <div class="form-group">
                             <label>Type</label>
+                            @php
+                                $selected = 'selected';
+                            @endphp
                             <select name="type" class="form-control">
                                 <option value="fullTime">Full time</option>
                                 <option value="partTime">Part time</option>
@@ -105,7 +108,7 @@
                                 </div>
                             @endif
                         <div class="form-group">
-                            <button class="btn btn-warning">Submit</button>
+                            <button class="btn btn-primary">Update</button>
                         </div>
                         </form>
                     </div>

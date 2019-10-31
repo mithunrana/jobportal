@@ -16,6 +16,8 @@ Route::get('jobs/create', 'JobController@create')->name('jobs.create');
 Route::post('jobs/store', 'JobController@store')->name('jobs.store');
 Route::get('jobs/myjob', 'JobController@myjob')->name('jobs.myjob');
 Route::get('jobedit/{id}','JobController@jobedit');
+Route::post('jobupdate/{id}','JobController@jobupdate');
+Route::get('jobDelete/{id}','JobController@jobDelete');
 
 Auth::routes();
 
